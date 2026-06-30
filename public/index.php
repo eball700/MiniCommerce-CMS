@@ -2,13 +2,26 @@
 
 declare(strict_types=1);
 
-require_once __DIR__ . '/../app/Services/Database.php';
+spl_autoload_register(function (string $class): void {
+    $prefix = 'App\\';
+    $baseDir = __DIR__ . '/../app/';
 
-use App\Services\Database;
+    if (!str_starts_with($class, $prefix)) {
+        return;
+    }
 
-$pdo = Database::getConnection();
+    $relativeClass = substr($class, strlen($prefix));
+    $file = $baseDir . str_replace('\\', '/', $relativeClass) . '.php';
 
-$stmt = $pdo->query('SELECT setting_value FROM settings WHERE setting_key = "site_name"');
-$siteName = $stmt->fetchColumn();
+    if (file_exists($file)) {
+        require $file;
+    }
+});
 
-echo $siteName;
+use App\Core\Router;
+
+$router = new Router();
+
+require __DIR__ . '/../routes/web.php';
+
+$router->dispatch($_SERVER['REQUEST_URI'], $_SERVER['REQUEST_METHOD']);
