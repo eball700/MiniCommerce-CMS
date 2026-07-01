@@ -35,23 +35,37 @@ class AdminPageController extends Controller
     {
         $this->requireAuth();
 
+$this->view('admin/pages-form', [
+    'page' => null,
+    'errors' => [],
+    'action' => '/minicommerce-cms/public/admin/pages/store',
+    'title' => 'Create Page',
+], 'admin');
+    }
+
+public function store(): void
+{
+    $this->requireAuth();
+
+    $pageRepository = new PageRepository(Database::getConnection());
+
+    $data = $this->getPageDataFromRequest();
+    $errors = $this->validatePageData($data);
+
+    if (!empty($errors)) {
         $this->view('admin/pages-form', [
-            'page' => null,
+            'page' => $data,
+            'errors' => $errors,
             'action' => '/minicommerce-cms/public/admin/pages/store',
             'title' => 'Create Page',
         ], 'admin');
+        return;
     }
 
-    public function store(): void
-    {
-        $this->requireAuth();
+    $pageRepository->create($data);
 
-        $pageRepository = new PageRepository(Database::getConnection());
-
-        $pageRepository->create($this->getPageDataFromRequest());
-
-        $this->redirect('/minicommerce-cms/public/admin/pages');
-    }
+    $this->redirect('/minicommerce-cms/public/admin/pages');
+}
 
     public function edit(string $id): void
     {
@@ -66,23 +80,45 @@ class AdminPageController extends Controller
             return;
         }
 
+$this->view('admin/pages-form', [
+    'page' => $page,
+    'errors' => [],
+    'action' => '/minicommerce-cms/public/admin/pages/update/' . (int) $id,
+    'title' => 'Edit Page',
+], 'admin');
+    }
+
+public function update(string $id): void
+{
+    $this->requireAuth();
+
+    $pageRepository = new PageRepository(Database::getConnection());
+
+    $page = $pageRepository->findById((int) $id);
+
+    if ($page === null) {
+        http_response_code(404);
+        echo '404 - Admin page not found';
+        return;
+    }
+
+    $data = $this->getPageDataFromRequest();
+    $errors = $this->validatePageData($data);
+
+    if (!empty($errors)) {
         $this->view('admin/pages-form', [
-            'page' => $page,
+            'page' => array_merge($page, $data),
+            'errors' => $errors,
             'action' => '/minicommerce-cms/public/admin/pages/update/' . (int) $id,
             'title' => 'Edit Page',
         ], 'admin');
+        return;
     }
 
-    public function update(string $id): void
-    {
-        $this->requireAuth();
+    $pageRepository->update((int) $id, $data);
 
-        $pageRepository = new PageRepository(Database::getConnection());
-
-        $pageRepository->update((int) $id, $this->getPageDataFromRequest());
-
-        $this->redirect('/minicommerce-cms/public/admin/pages');
-    }
+    $this->redirect('/minicommerce-cms/public/admin/pages');
+}
 
     public function delete(string $id): void
     {
@@ -93,6 +129,29 @@ class AdminPageController extends Controller
 
         $this->redirect('/minicommerce-cms/public/admin/pages');
     }
+
+    private function validatePageData(array $data): array
+{
+    $errors = [];
+
+    if ($data['title'] === '') {
+        $errors['title'] = 'Page title is required.';
+    }
+
+    if ($data['slug'] === '') {
+        $errors['slug'] = 'Page slug is required.';
+    }
+
+    if ($data['content'] === '') {
+        $errors['content'] = 'Page content is required.';
+    }
+
+    if (!in_array($data['status'], ['draft', 'published'], true)) {
+        $errors['status'] = 'Invalid page status.';
+    }
+
+    return $errors;
+}
 
     private function getPageDataFromRequest(): array
     {

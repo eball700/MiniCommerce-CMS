@@ -1,6 +1,17 @@
 <section>
     <h2><?= htmlspecialchars($title) ?></h2>
 
+    <?php if (!empty($errors)): ?>
+    <div style="color: red; margin-bottom: 15px;">
+        <strong>Please fix the following errors:</strong>
+        <ul>
+            <?php foreach ($errors as $error): ?>
+                <li><?= htmlspecialchars($error) ?></li>
+            <?php endforeach; ?>
+        </ul>
+    </div>
+<?php endif; ?>
+
     <form method="post" action="<?= htmlspecialchars($action) ?>">
         <div>
             <label for="title">Title</label>
