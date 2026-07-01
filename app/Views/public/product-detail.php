@@ -1,4 +1,12 @@
 <article>
+    <?php if (!empty($product['image'])): ?>
+        <img
+            src="/minicommerce-cms/public/<?= htmlspecialchars($product['image']) ?>"
+            alt="<?= htmlspecialchars($product['name']) ?>"
+            style="max-width: 100%; height: auto;"
+        >
+    <?php endif; ?>
+
     <h2><?= htmlspecialchars($product['name']) ?></h2>
 
     <p><?= htmlspecialchars($product['description']) ?></p>

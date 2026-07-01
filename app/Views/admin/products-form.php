@@ -1,7 +1,7 @@
 <section>
     <h2><?= htmlspecialchars($title) ?></h2>
 
-    <form method="post" action="<?= htmlspecialchars($action) ?>">
+    <form method="post" action="<?= htmlspecialchars($action) ?>" enctype="multipart/form-data">
         <div>
             <label for="category_id">Category</label>
             <select id="category_id" name="category_id">
@@ -63,16 +63,24 @@
             >
         </div>
 
-        <div>
-            <label for="image">Image path</label>
-            <input
-                type="text"
-                id="image"
-                name="image"
-                value="<?= htmlspecialchars($product['image'] ?? '') ?>"
-                placeholder="Optional image path"
-            >
-        </div>
+<div>
+    <label for="image">Product image</label>
+    <input
+        type="file"
+        id="image"
+        name="image"
+        accept="image/jpeg,image/png,image/webp"
+    >
+
+    <?php if (!empty($product['image'])): ?>
+        <p>Current image:</p>
+        <img
+            src="/minicommerce-cms/public/<?= htmlspecialchars($product['image']) ?>"
+            alt="<?= htmlspecialchars($product['name']) ?>"
+            style="max-width: 160px; height: auto;"
+        >
+    <?php endif; ?>
+</div>
 
         <div>
             <label for="status">Status</label>

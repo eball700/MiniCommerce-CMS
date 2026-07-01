@@ -35,6 +35,14 @@
         <div class="product-grid">
             <?php foreach ($products as $product): ?>
                 <article>
+                    <?php if (!empty($product['image'])): ?>
+                        <img
+                            src="/minicommerce-cms/public/<?= htmlspecialchars($product['image']) ?>"
+                            alt="<?= htmlspecialchars($product['name']) ?>"
+                            style="max-width: 100%; height: auto;"
+                        >
+                    <?php endif; ?>
+
                     <h3><?= htmlspecialchars($product['name']) ?></h3>
 
                     <p><?= htmlspecialchars($product['description']) ?></p>
