@@ -32,7 +32,7 @@
     <?php if (empty($products)): ?>
         <p>No products available.</p>
     <?php else: ?>
-        <div>
+        <div class="product-grid">
             <?php foreach ($products as $product): ?>
                 <article>
                     <h3><?= htmlspecialchars($product['name']) ?></h3>

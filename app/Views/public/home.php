@@ -9,7 +9,7 @@
     <?php if (empty($featuredProducts)): ?>
         <p>No featured products available.</p>
     <?php else: ?>
-        <div>
+        <div class="product-grid">
             <?php foreach ($featuredProducts as $product): ?>
                 <article>
                     <h3><?= htmlspecialchars($product['name']) ?></h3>
