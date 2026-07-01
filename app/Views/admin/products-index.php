@@ -5,10 +5,24 @@
         <a href="/minicommerce-cms/public/admin/products/create">Create new product</a>
     </p>
 
+    <div style="margin-bottom:20px;">
+    <input
+        type="text"
+        id="productSearch"
+        placeholder="Search products..."
+        style="max-width:350px;"
+    >
+</div>
+
     <?php if (empty($products)): ?>
         <p>No products available.</p>
     <?php else: ?>
-        <table border="1" cellpadding="8" cellspacing="0">
+        <table
+    id="productsTable"
+    border="1"
+    cellpadding="8"
+    cellspacing="0"
+>
             <thead>
                 <tr>
                     <th>Name</th>

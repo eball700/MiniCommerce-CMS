@@ -20,5 +20,6 @@
     <main>
         <?= $content ?>
     </main>
+    <script src="/minicommerce-cms/public/assets/js/admin.js"></script>
 </body>
 </html>
