@@ -27,19 +27,20 @@
                         <td><?= htmlspecialchars($page['status']) ?></td>
                         <td><?= htmlspecialchars($page['created_at']) ?></td>
                         <td>
-                            <a href="/minicommerce-cms/public/admin/pages/edit/<?= (int) $page['id'] ?>">
-                                Edit
-                            </a>
+                            <div class="admin-actions">
+                                <a href="/minicommerce-cms/public/admin/pages/edit/<?= (int) $page['id'] ?>">
+                                    Edit
+                                </a>
 
-                            <form
-                                method="post"
-                                action="/minicommerce-cms/public/admin/pages/delete/<?= (int) $page['id'] ?>"
-                                style="display:inline"
-                                onsubmit="return confirm('Are you sure you want to delete this page?');"
-                            >
-                            <input type="hidden" name="_csrf_token" value="<?= htmlspecialchars($csrfToken) ?>">
-                                <button type="submit">Delete</button>
-                            </form>
+                                <form
+                                    method="post"
+                                    action="/minicommerce-cms/public/admin/pages/delete/<?= (int) $page['id'] ?>"
+                                    onsubmit="return confirm('Are you sure you want to delete this page?');"
+                                >
+                                    <input type="hidden" name="_csrf_token" value="<?= htmlspecialchars($csrfToken) ?>">
+                                    <button type="submit" class="btn-danger">Delete</button>
+                                </form>
+                            </div>
                         </td>
                     </tr>
                 <?php endforeach; ?>

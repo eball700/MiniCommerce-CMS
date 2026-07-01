@@ -77,7 +77,9 @@
             </select>
         </div>
 
-        <button type="submit">Save</button>
-        <a href="/minicommerce-cms/public/admin/pages">Cancel</a>
+<div class="form-actions">
+    <button type="submit">Save</button>
+    <a class="btn-secondary" href="/minicommerce-cms/public/admin/pages">Cancel</a>
+</div>
     </form>
 </section>

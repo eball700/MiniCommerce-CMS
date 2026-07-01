@@ -1,6 +1,16 @@
-<section>
-    <h2>Welcome to <?= htmlspecialchars($siteName) ?></h2>
-    <p>This is a custom-built PHP MiniCommerce CMS.</p>
+<section class="hero-section">
+    <div>
+        <span class="hero-badge">Custom PHP CMS</span>
+        <h2>Welcome to <?= htmlspecialchars($siteName) ?></h2>
+        <p>
+            A lightweight, custom-built content and commerce platform with
+            dynamic pages, product management and a simple shopping cart.
+        </p>
+
+        <a class="hero-button" href="/minicommerce-cms/public/products">
+            Browse products
+        </a>
+    </div>
 </section>
 
 <section>

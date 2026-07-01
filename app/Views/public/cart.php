@@ -2,7 +2,12 @@
     <h2>Your Cart</h2>
 
     <?php if (empty($cartItems)): ?>
-        <p>Your cart is empty.</p>
+        <div class="empty-state">
+    <span class="hero-badge">Shopping Cart</span>
+    <h2>Your cart is empty</h2>
+    <p>Browse products and add something to your cart.</p>
+    <a href="/minicommerce-cms/public/products">Browse products</a>
+</div>
     <?php else: ?>
         <?php foreach ($cartItems as $item): ?>
             <article>

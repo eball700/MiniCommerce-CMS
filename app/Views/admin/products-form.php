@@ -106,19 +106,21 @@
             </select>
         </div>
 
-        <div>
-            <label>
-                <input
-                    type="checkbox"
-                    name="is_featured"
-                    value="1"
-                    <?= (int) ($product['is_featured'] ?? 0) === 1 ? 'checked' : '' ?>
-                >
-                Featured product
-            </label>
-        </div>
+<div>
+    <label class="checkbox-inline">
+        <input
+            type="checkbox"
+            name="is_featured"
+            value="1"
+            <?= (int) ($product['is_featured'] ?? 0) === 1 ? 'checked' : '' ?>
+        >
+        <span>Featured product</span>
+    </label>
+</div>
 
-        <button type="submit">Save</button>
-        <a href="/minicommerce-cms/public/admin/products">Cancel</a>
+<div class="form-actions">
+    <button type="submit">Save</button>
+    <a class="btn-secondary" href="/minicommerce-cms/public/admin/products">Cancel</a>
+</div>
     </form>
 </section>
