@@ -51,6 +51,7 @@ $this->view('admin/products-form', [
 public function store(): void
 {
     $this->requireAuth();
+    $this->verifyCsrf();
 
     $data = $this->getProductDataFromRequest();
     $errors = $this->validateProductData($data);
@@ -103,6 +104,7 @@ $this->view('admin/products-form', [
 public function update(string $id): void
 {
     $this->requireAuth();
+    $this->verifyCsrf();
 
     $pdo = Database::getConnection();
 
@@ -139,6 +141,7 @@ public function update(string $id): void
     public function delete(string $id): void
     {
         $this->requireAuth();
+        $this->verifyCsrf();
 
         $productRepository = new ProductRepository(Database::getConnection());
         $productRepository->delete((int) $id);

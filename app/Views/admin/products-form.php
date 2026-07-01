@@ -13,6 +13,7 @@
 <?php endif; ?>
 
     <form method="post" action="<?= htmlspecialchars($action) ?>" enctype="multipart/form-data">
+        <input type="hidden" name="_csrf_token" value="<?= htmlspecialchars($csrfToken) ?>">
         <div>
             <label for="category_id">Category</label>
             <select id="category_id" name="category_id">

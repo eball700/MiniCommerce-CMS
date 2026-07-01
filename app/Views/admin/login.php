@@ -8,6 +8,7 @@
     <?php endif; ?>
 
     <form method="post" action="/minicommerce-cms/public/admin/login">
+        <input type="hidden" name="_csrf_token" value="<?= htmlspecialchars($csrfToken) ?>">
         <div>
             <label for="email">Email</label>
             <input

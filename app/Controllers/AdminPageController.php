@@ -45,7 +45,9 @@ $this->view('admin/pages-form', [
 
 public function store(): void
 {
+    
     $this->requireAuth();
+    $this->verifyCsrf();
 
     $pageRepository = new PageRepository(Database::getConnection());
 
@@ -91,6 +93,7 @@ $this->view('admin/pages-form', [
 public function update(string $id): void
 {
     $this->requireAuth();
+    $this->verifyCsrf();
 
     $pageRepository = new PageRepository(Database::getConnection());
 
@@ -123,6 +126,7 @@ public function update(string $id): void
     public function delete(string $id): void
     {
         $this->requireAuth();
+        $this->verifyCsrf();
 
         $pageRepository = new PageRepository(Database::getConnection());
         $pageRepository->delete((int) $id);

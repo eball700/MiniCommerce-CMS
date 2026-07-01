@@ -35,6 +35,7 @@ class AdminSettingController extends Controller
     public function update(): void
     {
         $this->requireAuth();
+        $this->verifyCsrf();
 
         $data = [
             'site_name' => trim($_POST['site_name'] ?? ''),

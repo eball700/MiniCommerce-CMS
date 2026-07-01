@@ -13,6 +13,7 @@
 <?php endif; ?>
 
     <form method="post" action="<?= htmlspecialchars($action) ?>">
+        <input type="hidden" name="_csrf_token" value="<?= htmlspecialchars($csrfToken) ?>">
         <div>
             <label for="title">Title</label>
             <input

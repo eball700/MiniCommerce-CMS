@@ -41,6 +41,7 @@
                                 style="display:inline"
                                 onsubmit="return confirm('Are you sure you want to delete this product?');"
                             >
+                            <input type="hidden" name="_csrf_token" value="<?= htmlspecialchars($csrfToken) ?>">
                                 <button type="submit">Delete</button>
                             </form>
                         </td>

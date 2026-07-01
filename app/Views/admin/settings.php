@@ -13,6 +13,7 @@
     <?php endif; ?>
 
     <form method="post" action="/minicommerce-cms/public/admin/settings/update">
+        <input type="hidden" name="_csrf_token" value="<?= htmlspecialchars($csrfToken) ?>">
         <div>
             <label for="site_name">Website name</label>
             <input
