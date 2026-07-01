@@ -38,23 +38,41 @@ class AdminProductController extends Controller
 
         $categoryRepository = new CategoryRepository(Database::getConnection());
 
+$this->view('admin/products-form', [
+    'product' => null,
+    'categories' => $categoryRepository->getAll(),
+    'errors' => [],
+    'action' => '/minicommerce-cms/public/admin/products/store',
+    'title' => 'Create Product',
+], 'admin');
+
+    }
+
+public function store(): void
+{
+    $this->requireAuth();
+
+    $data = $this->getProductDataFromRequest();
+    $errors = $this->validateProductData($data);
+
+    if (!empty($errors)) {
+        $categoryRepository = new CategoryRepository(Database::getConnection());
+
         $this->view('admin/products-form', [
-            'product' => null,
+            'product' => $data,
             'categories' => $categoryRepository->getAll(),
+            'errors' => $errors,
             'action' => '/minicommerce-cms/public/admin/products/store',
             'title' => 'Create Product',
         ], 'admin');
+        return;
     }
 
-    public function store(): void
-    {
-        $this->requireAuth();
+    $productRepository = new ProductRepository(Database::getConnection());
+    $productRepository->create($data);
 
-        $productRepository = new ProductRepository(Database::getConnection());
-        $productRepository->create($this->getProductDataFromRequest());
-
-        $this->redirect('/minicommerce-cms/public/admin/products');
-    }
+    $this->redirect('/minicommerce-cms/public/admin/products');
+}
 
     public function edit(string $id): void
     {
@@ -73,19 +91,24 @@ class AdminProductController extends Controller
             return;
         }
 
-        $this->view('admin/products-form', [
-            'product' => $product,
-            'categories' => $categoryRepository->getAll(),
-            'action' => '/minicommerce-cms/public/admin/products/update/' . (int) $id,
-            'title' => 'Edit Product',
-        ], 'admin');
+$this->view('admin/products-form', [
+    'product' => $product,
+    'categories' => $categoryRepository->getAll(),
+    'errors' => [],
+    'action' => '/minicommerce-cms/public/admin/products/update/' . (int) $id,
+    'title' => 'Edit Product',
+], 'admin');
     }
 
 public function update(string $id): void
 {
     $this->requireAuth();
 
-    $productRepository = new ProductRepository(Database::getConnection());
+    $pdo = Database::getConnection();
+
+    $productRepository = new ProductRepository($pdo);
+    $categoryRepository = new CategoryRepository($pdo);
+
     $existingProduct = $productRepository->findById((int) $id);
 
     if ($existingProduct === null) {
@@ -94,10 +117,21 @@ public function update(string $id): void
         return;
     }
 
-    $productRepository->update(
-        (int) $id,
-        $this->getProductDataFromRequest($existingProduct)
-    );
+    $data = $this->getProductDataFromRequest($existingProduct);
+    $errors = $this->validateProductData($data);
+
+    if (!empty($errors)) {
+        $this->view('admin/products-form', [
+            'product' => array_merge($existingProduct, $data),
+            'categories' => $categoryRepository->getAll(),
+            'errors' => $errors,
+            'action' => '/minicommerce-cms/public/admin/products/update/' . (int) $id,
+            'title' => 'Edit Product',
+        ], 'admin');
+        return;
+    }
+
+    $productRepository->update((int) $id, $data);
 
     $this->redirect('/minicommerce-cms/public/admin/products');
 }
@@ -111,6 +145,41 @@ public function update(string $id): void
 
         $this->redirect('/minicommerce-cms/public/admin/products');
     }
+
+    private function validateProductData(array $data): array
+{
+    $errors = [];
+
+    if ($data['name'] === '') {
+        $errors['name'] = 'Product name is required.';
+    }
+
+    if ($data['slug'] === '') {
+        $errors['slug'] = 'Product slug is required.';
+    }
+
+    if ($data['description'] === '') {
+        $errors['description'] = 'Product description is required.';
+    }
+
+    if ($data['price'] <= 0) {
+        $errors['price'] = 'Product price must be greater than zero.';
+    }
+
+    if (
+        isset($_FILES['image']) &&
+        $_FILES['image']['error'] === UPLOAD_ERR_OK
+    ) {
+        $extension = strtolower(pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION));
+        $allowedExtensions = ['jpg', 'jpeg', 'png', 'webp'];
+
+        if (!in_array($extension, $allowedExtensions, true)) {
+            $errors['image'] = 'Only JPG, PNG and WEBP images are allowed.';
+        }
+    }
+
+    return $errors;
+}
 
 private function getProductDataFromRequest(?array $existingProduct = null): array
 {
