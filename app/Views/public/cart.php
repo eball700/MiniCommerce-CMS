@@ -14,6 +14,7 @@
                 </p>
 
                 <form method="post" action="/minicommerce-cms/public/cart/update">
+                    <input type="hidden" name="_csrf_token" value="<?= htmlspecialchars($csrfToken) ?>">
                     <input
                         type="hidden"
                         name="product_id"
@@ -34,6 +35,7 @@
                 </form>
 
                 <form method="post" action="/minicommerce-cms/public/cart/remove">
+                    <input type="hidden" name="_csrf_token" value="<?= htmlspecialchars($csrfToken) ?>">
                     <input
                         type="hidden"
                         name="product_id"
