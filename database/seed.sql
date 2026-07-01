@@ -2,7 +2,7 @@ USE minicommerce_cms;
 
 INSERT INTO users (name, email, password_hash, role)
 VALUES
-('Admin User', 'admin@example.com', '$2y$10$E9QZgY4xA4Qw6lXOD0PbI.b7yVb3ONKsxv1ztB0m9pjRkEv4gAa9W', 'admin');
+('Admin User', 'admin@example.com', '$2y$10$ciPdH9oLQG./FJ8C4O8Amu9/MIoZqSBlAqFMW3EAdgLVr/R0L5cYu', 'admin');
 
 INSERT INTO settings (setting_key, setting_value)
 VALUES
