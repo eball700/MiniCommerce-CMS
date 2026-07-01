@@ -77,4 +77,25 @@ class ProductRepository
 
         return $product ?: null;
     }
+
+    public function findPublishedById(int $id): ?array
+    {
+        $stmt = $this->pdo->prepare(
+            'SELECT p.*, c.name AS category_name
+             FROM products p
+             LEFT JOIN categories c ON c.id = p.category_id
+             WHERE p.id = :id
+             AND p.status = :status
+             LIMIT 1'
+        );
+
+        $stmt->execute([
+            'id' => $id,
+            'status' => 'published',
+        ]);
+
+        $product = $stmt->fetch();
+
+        return $product ?: null;
+    }
 }

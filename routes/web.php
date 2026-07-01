@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+use App\Controllers\AdminAuthController;
+use App\Controllers\AdminDashboardController;
 use App\Controllers\CartController;
 use App\Controllers\HomeController;
 use App\Controllers\PageController;
@@ -17,3 +19,8 @@ $router->get('/cart', [CartController::class, 'index']);
 $router->post('/cart/add', [CartController::class, 'add']);
 $router->post('/cart/update', [CartController::class, 'update']);
 $router->post('/cart/remove', [CartController::class, 'remove']);
+
+$router->get('/admin/login', [AdminAuthController::class, 'showLogin']);
+$router->post('/admin/login', [AdminAuthController::class, 'login']);
+$router->get('/admin/logout', [AdminAuthController::class, 'logout']);
+$router->get('/admin/dashboard', [AdminDashboardController::class, 'index']);

@@ -29,7 +29,7 @@ class CartController extends Controller
         $total = 0.0;
 
         foreach ($cartService->getItems() as $productId => $quantity) {
-            $product = $this->findProductById($productRepository, (int) $productId);
+            $product = $productRepository->findPublishedById((int) $productId);
 
             if ($product === null) {
                 continue;
@@ -89,18 +89,5 @@ class CartController extends Controller
         }
 
         $this->redirect('/minicommerce-cms/public/cart');
-    }
-
-    private function findProductById(ProductRepository $productRepository, int $productId): ?array
-    {
-        $products = $productRepository->getPublishedProducts();
-
-        foreach ($products as $product) {
-            if ((int) $product['id'] === $productId) {
-                return $product;
-            }
-        }
-
-        return null;
     }
 }
