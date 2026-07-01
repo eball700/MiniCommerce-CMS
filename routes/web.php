@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use App\Controllers\AdminAuthController;
 use App\Controllers\AdminDashboardController;
+use App\Controllers\AdminPageController;
 use App\Controllers\CartController;
 use App\Controllers\HomeController;
 use App\Controllers\PageController;
@@ -24,3 +25,10 @@ $router->get('/admin/login', [AdminAuthController::class, 'showLogin']);
 $router->post('/admin/login', [AdminAuthController::class, 'login']);
 $router->get('/admin/logout', [AdminAuthController::class, 'logout']);
 $router->get('/admin/dashboard', [AdminDashboardController::class, 'index']);
+
+$router->get('/admin/pages', [AdminPageController::class, 'index']);
+$router->get('/admin/pages/create', [AdminPageController::class, 'create']);
+$router->post('/admin/pages/store', [AdminPageController::class, 'store']);
+$router->get('/admin/pages/edit/{id}', [AdminPageController::class, 'edit']);
+$router->post('/admin/pages/update/{id}', [AdminPageController::class, 'update']);
+$router->post('/admin/pages/delete/{id}', [AdminPageController::class, 'delete']);
