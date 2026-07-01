@@ -26,4 +26,33 @@ class SettingRepository
 
         return $value !== false ? (string) $value : $default;
     }
+
+    public function getAll(): array
+    {
+        $stmt = $this->pdo->query(
+            'SELECT setting_key, setting_value FROM settings'
+        );
+
+        $settings = [];
+
+        foreach ($stmt->fetchAll() as $row) {
+            $settings[$row['setting_key']] = $row['setting_value'];
+        }
+
+        return $settings;
+    }
+
+    public function update(string $key, string $value): void
+    {
+        $stmt = $this->pdo->prepare(
+            'UPDATE settings
+             SET setting_value = :setting_value
+             WHERE setting_key = :setting_key'
+        );
+
+        $stmt->execute([
+            'setting_key' => $key,
+            'setting_value' => $value,
+        ]);
+    }
 }

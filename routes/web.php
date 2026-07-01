@@ -6,6 +6,7 @@ use App\Controllers\AdminAuthController;
 use App\Controllers\AdminDashboardController;
 use App\Controllers\AdminPageController;
 use App\Controllers\AdminProductController;
+use App\Controllers\AdminSettingController;
 use App\Controllers\CartController;
 use App\Controllers\HomeController;
 use App\Controllers\PageController;
@@ -40,3 +41,6 @@ $router->post('/admin/products/store', [AdminProductController::class, 'store'])
 $router->get('/admin/products/edit/{id}', [AdminProductController::class, 'edit']);
 $router->post('/admin/products/update/{id}', [AdminProductController::class, 'update']);
 $router->post('/admin/products/delete/{id}', [AdminProductController::class, 'delete']);
+
+$router->get('/admin/settings', [AdminSettingController::class, 'index']);
+$router->post('/admin/settings/update', [AdminSettingController::class, 'update']);
