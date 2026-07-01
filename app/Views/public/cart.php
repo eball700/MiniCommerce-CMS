@@ -23,12 +23,13 @@
 
                     <label>
                         Quantity
-                        <input
-                            type="number"
-                            name="quantity"
-                            value="<?= (int) $item['quantity'] ?>"
-                            min="0"
-                        >
+<input
+    class="cart-quantity"
+    type="number"
+    name="quantity"
+    value="<?= (int) $item['quantity'] ?>"
+    min="0"
+>
                     </label>
 
                     <button type="submit">Update</button>

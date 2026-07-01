@@ -29,5 +29,6 @@
     <main>
         <?= $content ?>
     </main>
+    <script src="/minicommerce-cms/public/assets/js/cart.js"></script>
 </body>
 </html>
