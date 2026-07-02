@@ -1,5 +1,5 @@
 <article class="content-hero">
-    <span class="hero-badge">CMS Page</span>
+    
 
     <h2><?= htmlspecialchars($page['title']) ?></h2>
 

@@ -31,31 +31,31 @@ class ProductRepository
         return $stmt->fetchAll();
     }
 
-    public function getPublishedProducts(?int $categoryId = null, string $sort = 'asc'): array
-    {
-        $allowedSort = strtolower($sort) === 'desc' ? 'DESC' : 'ASC';
+public function getPublishedProducts(?int $categoryId = null, string $sort = 'asc'): array
+{
+    $allowedSort = strtolower($sort) === 'desc' ? 'DESC' : 'ASC';
 
-        $sql = 'SELECT p.*, c.name AS category_name
-                FROM products p
-                LEFT JOIN categories c ON c.id = p.category_id
-                WHERE p.status = :status';
+    $sql = 'SELECT p.*, c.name AS category_name
+            FROM products p
+            LEFT JOIN categories c ON c.id = p.category_id
+            WHERE p.status = :status';
 
-        $params = [
-            'status' => 'published',
-        ];
+    $params = [
+        'status' => 'published',
+    ];
 
-        if ($categoryId !== null) {
-            $sql .= ' AND p.category_id = :category_id';
-            $params['category_id'] = $categoryId;
-        }
-
-        $sql .= ' ORDER BY p.price ' . $allowedSort;
-
-        $stmt = $this->pdo->prepare($sql);
-        $stmt->execute($params);
-
-        return $stmt->fetchAll();
+    if ($categoryId !== null) {
+        $sql .= ' AND p.category_id = :category_id';
+        $params['category_id'] = $categoryId;
     }
+
+    $sql .= ' ORDER BY p.price ' . $allowedSort;
+
+    $stmt = $this->pdo->prepare($sql);
+    $stmt->execute($params);
+
+    return $stmt->fetchAll();
+}
 
     public function findPublishedBySlug(string $slug): ?array
     {

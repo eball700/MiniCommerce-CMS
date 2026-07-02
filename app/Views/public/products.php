@@ -1,32 +1,33 @@
 <section class="page-shell">
     <h2>Products</h2>
-    <span class="hero-badge">Product Catalog</span>
-<p class="page-intro">Browse published products, filter by category and sort by price.</p>
 
-    <form method="get" action="/minicommerce-cms/public/products">
-        <label for="category">Category</label>
-        <select name="category" id="category">
-            <option value="">All categories</option>
+<form method="get" action="/minicommerce-cms/public/products">
+    <label for="category">Category</label>
+    <select name="category" id="category">
+        <option value="">All categories</option>
 
-            <?php foreach ($categories as $category): ?>
-                <option
-                    value="<?= (int) $category['id'] ?>"
-                    <?= $selectedCategory === (int) $category['id'] ? 'selected' : '' ?>
-                >
-                    <?= htmlspecialchars($category['name']) ?>
-                </option>
-            <?php endforeach; ?>
-        </select>
-
-        <label for="sort">Sort by price</label>
-        <select name="sort" id="sort">
-            <option value="asc" <?= $selectedSort === 'asc' ? 'selected' : '' ?>>
-                Price ascending
+        <?php foreach ($categories as $category): ?>
+            <option
+                value="<?= (int) $category['id'] ?>"
+                <?= (int) ($selectedCategory ?? 0) === (int) $category['id'] ? 'selected' : '' ?>
+            >
+                <?= htmlspecialchars($category['name']) ?>
             </option>
-            <option value="desc" <?= $selectedSort === 'desc' ? 'selected' : '' ?>>
-                Price descending
-            </option>
-        </select>
+        <?php endforeach; ?>
+    </select>
+
+    <label for="sort">Sort by price</label>
+    <select name="sort" id="sort">
+        <option value="asc" <?= ($selectedSort ?? 'asc') === 'asc' ? 'selected' : '' ?>>
+            Price ascending
+        </option>
+        <option value="desc" <?= ($selectedSort ?? 'asc') === 'desc' ? 'selected' : '' ?>>
+            Price descending
+        </option>
+    </select>
+
+    <button type="submit">Apply</button>
+</form>
 
         <button type="submit">Apply</button>
     </form>

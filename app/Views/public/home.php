@@ -1,6 +1,6 @@
 <section class="hero-section">
     <div>
-        <span class="hero-badge">Custom PHP CMS</span>
+        
         <h2>Welcome to <?= htmlspecialchars($siteName) ?></h2>
         <p>
             A lightweight, custom-built content and commerce platform with

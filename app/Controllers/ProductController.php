@@ -22,11 +22,17 @@ class ProductController extends Controller
         $categoryRepository = new CategoryRepository($pdo);
         $productRepository = new ProductRepository($pdo);
 
-        $categoryId = isset($_GET['category']) && $_GET['category'] !== ''
-            ? (int) $_GET['category']
-            : null;
+$categoryId = isset($_GET['category']) && $_GET['category'] !== ''
+    ? (int) $_GET['category']
+    : null;
 
-        $sort = $_GET['sort'] ?? 'asc';
+$sort = $_GET['sort'] ?? 'asc';
+
+if (!in_array($sort, ['asc', 'desc'], true)) {
+    $sort = 'asc';
+}
+
+$products = $productRepository->getPublishedProducts($categoryId, $sort);
 
         $siteName = $settingRepository->get('site_name', 'MiniCommerce CMS');
         $pages = $pageRepository->getPublishedPages();
