@@ -294,7 +294,7 @@ architectural decisions and development notes.
 
 **Amir Arabi**
 
-Technical Assignment --- Mid-Level Full-Stack PHP Developer
+Technical Assignment --- Full-Stack PHP Developer
 
 Developed entirely in plain PHP without using any PHP framework or CMS
 platform.
