@@ -12,7 +12,6 @@
             <thead>
                 <tr>
                     <th>Title</th>
-                    <th>Slug</th>
                     <th>Status</th>
                     <th>Created at</th>
                     <th>Actions</th>
@@ -23,7 +22,6 @@
                 <?php foreach ($pages as $page): ?>
                     <tr>
                         <td><?= htmlspecialchars($page['title']) ?></td>
-                        <td><?= htmlspecialchars($page['slug']) ?></td>
                         <td><?= htmlspecialchars($page['status']) ?></td>
                         <td><?= htmlspecialchars($page['created_at']) ?></td>
                         <td>

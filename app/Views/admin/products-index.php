@@ -27,7 +27,6 @@
             <thead>
                 <tr>
                     <th>Name</th>
-                    <th>Slug</th>
                     <th>Category</th>
                     <th>Price</th>
                     <th>Status</th>
@@ -40,7 +39,6 @@
                 <?php foreach ($products as $product): ?>
                     <tr>
                         <td><?= htmlspecialchars($product['name']) ?></td>
-                        <td><?= htmlspecialchars($product['slug']) ?></td>
                         <td><?= htmlspecialchars($product['category_name'] ?? 'Uncategorized') ?></td>
                         <td>€<?= number_format((float) $product['price'], 2) ?></td>
                         <td><?= htmlspecialchars($product['status']) ?></td>
