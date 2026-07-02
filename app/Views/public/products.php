@@ -29,8 +29,6 @@
     <button type="submit">Apply</button>
 </form>
 
-        <button type="submit">Apply</button>
-    </form>
 
     <?php if (empty($products)): ?>
         <p>No products available.</p>

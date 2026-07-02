@@ -12,7 +12,7 @@ VALUES
 INSERT INTO pages (title, slug, content, meta_title, meta_description, status)
 VALUES
 ('About Us', 'about-us', '<p>Welcome to MiniCommerce CMS. This is a custom-built PHP application with CMS and eCommerce features.</p>', 'About Us - MiniCommerce CMS', 'Learn more about MiniCommerce CMS.', 'published'),
-('Contact', 'contact', '<p>You can contact us at contact@example.com.</p>', 'Contact - MiniCommerce CMS', 'Contact MiniCommerce CMS.', 'published'),
+('Contact', 'contact', '<p>You can contact us at {{contact_email}}.</p>', 'Contact - MiniCommerce CMS', 'Contact MiniCommerce CMS.', 'published'),
 ('Privacy Policy', 'privacy-policy', '<p>This is a sample privacy policy page.</p>', 'Privacy Policy - MiniCommerce CMS', 'Read our privacy policy.', 'draft');
 
 INSERT INTO categories (name, slug)

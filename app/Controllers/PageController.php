@@ -19,6 +19,8 @@ class PageController extends Controller
         $pageRepository = new PageRepository($pdo);
 
         $siteName = $settingRepository->get('site_name', 'MiniCommerce CMS');
+        $contactEmail = $settingRepository->get('contact_email', 'contact@example.com');
+
         $pages = $pageRepository->getPublishedPages();
         $page = $pageRepository->findPublishedBySlug($slug);
 
@@ -27,6 +29,12 @@ class PageController extends Controller
             echo '404 - Page not found';
             return;
         }
+
+        $page['content'] = str_replace(
+            '{{contact_email}}',
+            htmlspecialchars($contactEmail),
+            $page['content']
+        );
 
         $this->view('public/page', [
             'siteName' => $siteName,
