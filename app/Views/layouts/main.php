@@ -29,19 +29,19 @@ $cartCount = !empty($_SESSION['cart'])
     </div>
 
     <div class="site-nav-row">
-        <nav>
-            <a href="/minicommerce-cms/public">Home</a>
+<nav>
+    <a href="/minicommerce-cms/public">Home</a>
 
-            <?php if (!empty($pages)): ?>
-                <?php foreach ($pages as $page): ?>
-                    <a href="/minicommerce-cms/public/page/<?= htmlspecialchars($page['slug']) ?>">
-                        <?= htmlspecialchars($page['title']) ?>
-                    </a>
-                <?php endforeach; ?>
-            <?php endif; ?>
+    <a href="/minicommerce-cms/public/products">Products</a>
 
-            <a href="/minicommerce-cms/public/products">Products</a>
-        </nav>
+    <?php if (!empty($pages)): ?>
+        <?php foreach ($pages as $page): ?>
+            <a href="/minicommerce-cms/public/page/<?= htmlspecialchars($page['slug']) ?>">
+                <?= htmlspecialchars($page['title']) ?>
+            </a>
+        <?php endforeach; ?>
+    <?php endif; ?>
+</nav>
 
 <a
     class="cart-icon-link"
