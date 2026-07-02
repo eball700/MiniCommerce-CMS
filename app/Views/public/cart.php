@@ -62,5 +62,26 @@
             Total:
             €<?= number_format((float) $total, 2) ?>
         </h3>
+
+        <div class="checkout-actions">
+    <button type="button" id="checkoutButton">
+        Proceed to Checkout
+    </button>
+</div>
+
+<div id="checkoutModal" class="modal-overlay" hidden>
+    <div class="modal-box">
+        <h2>Checkout not implemented</h2>
+        <p>
+            This demo project includes a shopping cart, but real payment processing
+            is intentionally not implemented.
+        </p>
+
+        <button type="button" id="closeCheckoutModal">
+            Close
+        </button>
+    </div>
+</div>
+
     <?php endif; ?>
 </section>

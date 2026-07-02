@@ -1,3 +1,15 @@
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+$cartCount = 0;
+
+$cartCount = !empty($_SESSION['cart'])
+    ? count($_SESSION['cart'])
+    : 0;
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,14 +43,20 @@
             <a href="/minicommerce-cms/public/products">Products</a>
         </nav>
 
-        <a
-            class="cart-icon-link"
-            href="/minicommerce-cms/public/cart"
-            aria-label="View cart"
-            title="View cart"
-        >
-            🛒
-        </a>
+<a
+    class="cart-icon-link"
+    href="/minicommerce-cms/public/cart"
+    aria-label="View cart"
+    title="View cart"
+>
+    🛒
+
+    <?php if ($cartCount > 0): ?>
+        <span class="cart-badge">
+            <?= $cartCount > 9 ? '9+' : (int) $cartCount ?>
+        </span>
+    <?php endif; ?>
+</a>
     </div>
 </header>
 
