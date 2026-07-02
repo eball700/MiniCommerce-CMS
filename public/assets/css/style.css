@@ -518,3 +518,78 @@ th {
     margin-top: 8px;
     letter-spacing: -.04em;
 }
+
+html,
+body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+img,
+table,
+input,
+select,
+textarea,
+button {
+    max-width: 100%;
+}
+
+@media (max-width: 768px) {
+    main {
+        padding: 0 12px;
+    }
+
+    section,
+    article {
+        padding: 18px 14px;
+    }
+
+    .site-header {
+        padding: 18px 14px;
+    }
+
+    .site-brand {
+        flex-wrap: wrap;
+    }
+
+    .site-brand h1 {
+        font-size: 1.35rem;
+    }
+
+    .site-brand p {
+        font-size: .85rem;
+    }
+
+    nav a {
+        width: 100%;
+        text-align: center;
+    }
+
+    .admin-menu {
+        max-width: 100%;
+    }
+
+    .admin-actions {
+        min-width: 120px;
+    }
+
+    .table-wrapper,
+    table {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 900px) {
+    .table-wrapper {
+        width: 100%;
+        overflow-x: auto;
+    }
+
+    table {
+        min-width: 760px;
+    }
+
+    .admin-actions {
+        min-width: 160px;
+    }
+}

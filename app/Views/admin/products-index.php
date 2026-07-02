@@ -15,8 +15,9 @@
     </div>
 
     <?php if (empty($products)): ?>
-        <p>No products available.</p>
-    <?php else: ?>
+    <p>No products available.</p>
+<?php else: ?>
+    <div class="table-wrapper">
         <table
             id="productsTable"
             border="1"
@@ -64,5 +65,6 @@
                 <?php endforeach; ?>
             </tbody>
         </table>
-    <?php endif; ?>
+    </div>
+<?php endif; ?>
 </section>
