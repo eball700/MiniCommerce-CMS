@@ -1,4 +1,4 @@
-<section>
+<section class="page-shell">
     <h2>Dashboard</h2>
 
     <p>Welcome to the MiniCommerce CMS admin area.</p>

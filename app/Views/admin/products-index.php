@@ -1,4 +1,4 @@
-<section>
+<section class="page-shell">
     <h2>Manage Products</h2>
 
     <p>

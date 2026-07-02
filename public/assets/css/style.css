@@ -506,3 +506,15 @@ th {
     text-align: center;
     border: 2px solid #1f2937;
 }
+
+.page-shell {
+    background:
+        linear-gradient(135deg, rgba(37, 99, 235, .08), rgba(124, 58, 237, .08)),
+        #fff;
+    border: 1px solid rgba(37, 99, 235, .12);
+}
+
+.page-shell h2 {
+    margin-top: 8px;
+    letter-spacing: -.04em;
+}

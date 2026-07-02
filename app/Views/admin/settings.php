@@ -1,4 +1,4 @@
-<section>
+<section class="page-shell">
     <h2>Website Settings</h2>
 
     <?php if (!empty($errors)): ?>

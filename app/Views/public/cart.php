@@ -1,4 +1,4 @@
-<section>
+<section class="page-shell">
     <h2>Your Cart</h2>
 
     <?php if (empty($cartItems)): ?>

@@ -1,5 +1,7 @@
-<section>
+<section class="page-shell">
     <h2>Products</h2>
+    <span class="hero-badge">Product Catalog</span>
+<p class="page-intro">Browse published products, filter by category and sort by price.</p>
 
     <form method="get" action="/minicommerce-cms/public/products">
         <label for="category">Category</label>

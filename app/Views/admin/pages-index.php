@@ -1,4 +1,4 @@
-<section>
+<section class="page-shell">
     <h2>Manage Pages</h2>
 
     <p>
